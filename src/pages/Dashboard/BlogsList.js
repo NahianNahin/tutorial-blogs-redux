@@ -2,8 +2,8 @@ import React from 'react';
 
 const BlogsList = () => {
     return (
-        <div>
-            
+        <div className='flex justify-center items-center h-full '>
+            <h1>All Blogs</h1>
         </div>
     );
 };

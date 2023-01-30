@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className='col-span-2 bg-green-200 h-[calc(100vh-25px)] p-5 rounded-lg'>
       <ul className='flex gap-3  flex-col h-full'>
-        <li>Admin Dashboard</li>
+        <li className="font-semibold">Admin Dashboard</li>
         <li>
           <Link to='/dashboard'>Blogs List</Link>
         </li>
@@ -16,7 +16,7 @@ const Sidebar = () => {
           <Link to='edit-blog'> Edit Blog </Link>
         </li>
         <li className='mt-auto'>
-          <Link to='/'> Back to Home </Link>
+          <Link to='/' className="font-semibold"> Back to Home </Link>
         </li>
       </ul>
     </div>
