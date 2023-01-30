@@ -1,23 +1,26 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import postBlogData from '../../redux/thunk/postBlog';
 
 const AddBlog = () => {
     const { register, handleSubmit } = useForm();
     let day = new Date().getDate();
-        let month = new Date().getMonth() + 1;
-        let year = new Date().getFullYear();
-        let currentDate = `${day}-${month}-${year}`;
-
+    let month = new Date().getMonth() + 1;
+    let year = new Date().getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+    const dispatch = useDispatch();
     const submit = (data) => {
         const blog = {
-            headline : data.heading,
-            tag : data.tag,
-            question : data.question,
-            answer : data.answer,
+            headline: data.heading,
+            tag: data.tag,
+            question: data.question,
+            answer: data.answer,
             currentDate
         };
 
         console.log(blog);
+        dispatch(postBlogData(blog));
     };
     return (
         <div className='flex justify-center items-center h-full '>
