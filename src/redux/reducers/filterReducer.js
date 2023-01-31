@@ -1,4 +1,4 @@
-import { GET_KEYWORD, TOGGLE_FIRST_OR_LAST_UPLOAD,  TOGGLE_TAG } from "../actionTypes/actionTypes";
+import { GET_KEYWORD, TOGGLE_FIRST_OR_LAST_UPLOAD, TOGGLE_TAG } from "../actionTypes/actionTypes";
 
 const initialState = {
     filters: {
@@ -6,18 +6,43 @@ const initialState = {
         firstDate: true
     },
     keyword: "",
-    
+
 };
 
 const filterReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_FIRST_OR_LAST_UPLOAD:
-            return {};
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    firstDate: !state.filters.firstDate
+                }
+
+            };
         case TOGGLE_TAG:
-            return {};
+            if (!state.filters.tags.includes(action.payload)) {
+                return {
+                    ...state,
+                    filters: {
+                        ...state.filters,
+                        tags: [...state.filters.tags, action.payload]
+                    }
+                }
+            }
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    tags: state.filters.tags.filter(tag => tag !== action.payload)
+                }
+            }
         case GET_KEYWORD:
-            return {};
-        
+            return {
+                ...state,
+                keyword: action.payload
+            };
+
         default:
             return state;
     }

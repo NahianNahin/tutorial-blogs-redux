@@ -4,10 +4,14 @@ const initialstate = {
     loading: false,
     blogs: [],
     error: false,
-    history: []
+    history: [],
+    modal : {}
 }
 
 const blogsReducer = (state = initialstate, action) => {
+    const selectedBlog = state.history.find(
+        (blog) => blog._id === action.payload._id
+    );
     switch (action.type) {
         case GET_CONTENT:
             return {
@@ -28,10 +32,22 @@ const blogsReducer = (state = initialstate, action) => {
                 blogs: state.blogs.filter(blog => blog._id !== action.payload)
             };
         case ADD_TO_HISTORY:
+            if (selectedBlog) {
+                const newHistory = state.history.filter(
+                    (blog) => blog._id !== selectedBlog._id
+                );
+                return {
+                    ...state,
+                    history: [action.payload, ...newHistory],
+                    modal : action.payload
+                };
+            }
             return {
                 ...state,
-                history: [...state.history, action.payload]
+                history: [action.payload, ...state.history],
+                modal : action.payload
             };
+
         case FETCHING_START:
             return {
                 ...state,

@@ -2,10 +2,12 @@ import React from 'react';
 import { GiSelfLove } from 'react-icons/gi';
 import { useDispatch, useSelector } from 'react-redux';
 import { add_to_history, toggle_love } from '../redux/actions/ContentActions';
+import BlogModal from './BlogModal';
 
 
 const BlogCard = ({ blog }) => {
     const love = useSelector(state => state.filter.love)
+    const modal = useSelector(state => state.blog.modal)
     const dispatch = useDispatch();
     const activeClass = "text-white  bg-orange-500 border-white";
     return (
@@ -17,12 +19,13 @@ const BlogCard = ({ blog }) => {
                 <p className='mb-2'>Ans : {blog.answer.slice(0, 50)}<span className='text-orange-900 font-extrabold cursor-pointer'> ...read more</span></p>
             </div>
             <div className='flex gap-2 mt-5'>
-                <button
+                <label
+                    htmlFor="modal-blog"
                     onClick={() => dispatch(add_to_history(blog))}
-                    className='bg-orange-500 rounded-full py-1 px-2 flex-1 text-white font-bold'
+                    className='bg-orange-500 rounded-full py-1 px-2 flex-1 text-white font-bold cursor-pointer text-center'
                 >
                     Read Details
-                </button>
+                </label>
                 <button
                     title='love'
                     onClick={() => dispatch(toggle_love(blog))}
@@ -31,6 +34,7 @@ const BlogCard = ({ blog }) => {
                     <GiSelfLove />
                 </button>
             </div>
+            <BlogModal modal={modal}></BlogModal>
         </div>
     );
 };
