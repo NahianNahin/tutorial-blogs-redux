@@ -1,4 +1,4 @@
-import { ADD_CONTENT, DELETE_CONTENT, FETCHING_ERROR, FETCHING_START, GET_CONTENT, UPDATE_CONTENT } from "../actionTypes/actionTypes"
+import { ADD_CONTENT, ADD_TO_HISTORY, DELETE_CONTENT, FETCHING_ERROR, FETCHING_START, GET_CONTENT, TOGGLE_LOVE, UPDATE_CONTENT } from "../actionTypes/actionTypes"
 
 export const get_content = (blogs) => {
     return {
@@ -34,5 +34,22 @@ export const fetching_start = () => {
 export const fetching_error = () => {
     return {
         type: FETCHING_ERROR,
+    }
+}
+
+// ADD TO READING HISTORY
+
+export const add_to_history = (blog) => {
+    return {
+        type: ADD_TO_HISTORY,
+        payload : blog
+    }
+}
+
+
+export const toggle_love = (blog) => {
+    return {
+        type: TOGGLE_LOVE,
+        payload : blog
     }
 }

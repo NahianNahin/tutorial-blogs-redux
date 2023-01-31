@@ -5,7 +5,7 @@ import { BiSearchAlt } from "react-icons/bi";
 
 const Header = () => {
   return (
-    <nav className='h-14 bg-green-200 rounded-full m-2 max-w-7xl mx-auto px-5'>
+    <nav className='h-14 bg-orange-200 rounded-full m-2 max-w-7xl mx-auto px-5'>
       <ul className='h-full  mx-auto flex justify-between items-center gap-3 font-semibold text-indigo-900'>
         <h1 className="font-semibold text-lg ">IT Tutorial Blogs</h1>
         <li className='flex bg-white mx-auto h-8 w-full max-w-lg  rounded-full pr-3'>
@@ -23,7 +23,7 @@ const Header = () => {
           <Link to='/'>Home</Link>
         </li>
         <li>
-          <Link to='/top-rated'>Top Rated</Link>
+          <Link to='/reading-history'>Reading History</Link>
         </li>
         <li>
           <Link to='/about'>About</Link>

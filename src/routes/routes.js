@@ -6,7 +6,8 @@ import BlogsList from "../pages/Dashboard/BlogsList";
 import EditBlog from "../pages/Dashboard/EditBlog";
 import About from "../pages/Main/About";
 import Home from "../pages/Main/Home";
-import TopRated from "../pages/Main/TopRated";
+import ReadingHistory from "../pages/Main/ReadingHistory";
+
 
 const routes = createBrowserRouter([
     {
@@ -22,8 +23,8 @@ const routes = createBrowserRouter([
           element: <About />,
         },
         {
-          path: "top-rated",
-          element: <TopRated />,
+          path: "reading-history",
+          element: <ReadingHistory />,
         },
       ],
     },

@@ -77,7 +77,7 @@ const AddBlog = () => {
                     </div>
                     <div className='flex justify-between items-center w-full'>
                         <button
-                            className=' px-4 py-3 bg-green-600 rounded-md font-semibold text-white text-lg disabled:bg-gray-500'
+                            className=' px-4 py-3 bg-orange-600 rounded-md font-semibold text-white text-lg disabled:bg-gray-500'
                             type='submit'
                         >
                             Add Blog
