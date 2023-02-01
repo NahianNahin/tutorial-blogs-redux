@@ -1,11 +1,12 @@
-import { ADD_CONTENT, ADD_TO_HISTORY, DELETE_CONTENT, FETCHING_ERROR, FETCHING_START, GET_CONTENT, UPDATE_CONTENT } from "../actionTypes/actionTypes";
+import { ADD_CONTENT, ADD_TO_HISTORY, DELETE_CONTENT, FETCHING_ERROR, FETCHING_START, GET_CONTENT, SELECTED_BLOG, UPDATE_CONTENT } from "../actionTypes/actionTypes";
 
 const initialstate = {
     loading: false,
     blogs: [],
     error: false,
     history: [],
-    modal : {}
+    modal: {},
+    selected: {}
 }
 
 const blogsReducer = (state = initialstate, action) => {
@@ -25,7 +26,11 @@ const blogsReducer = (state = initialstate, action) => {
                 blogs: [...state.blogs, action.payload]
             };
         case UPDATE_CONTENT:
-            return {};
+            const newblogs = state.blogs.filter(blog => blog._id !== action.payload._id);
+            return {
+                ...state,
+                blogs: [...newblogs, action.payload]
+            };
         case DELETE_CONTENT:
             return {
                 ...state,
@@ -39,13 +44,13 @@ const blogsReducer = (state = initialstate, action) => {
                 return {
                     ...state,
                     history: [action.payload, ...newHistory],
-                    modal : action.payload
+                    modal: action.payload
                 };
             }
             return {
                 ...state,
                 history: [action.payload, ...state.history],
-                modal : action.payload
+                modal: action.payload
             };
 
         case FETCHING_START:
@@ -59,7 +64,11 @@ const blogsReducer = (state = initialstate, action) => {
                 loading: false,
                 error: true
             };
-
+        case SELECTED_BLOG:
+            return {
+                ...state,
+                selected: action.payload
+            };
         default:
             return state;
     }

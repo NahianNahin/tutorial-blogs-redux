@@ -7,6 +7,8 @@ import loadBlogsData from "../../redux/thunk/fetchBlog";
 const Home = () => {
     const activeClass = "text-white  bg-orange-500 border-white";
     const blogs = useSelector(state => state.blog.blogs);
+    const loading = useSelector(state => state.blog.loading);
+    const error = useSelector(state => state.blog.error);
     const filters = useSelector(state => state.filter.filters);
     const { tags, firstDate } = filters;
     const keyword = useSelector(state => state.filter.keyword);
@@ -15,6 +17,20 @@ const Home = () => {
         dispatch(loadBlogsData())
     }, [dispatch])
     let content;
+    if(loading){
+        content = <h1 className='text-center text-xl font-bold py-3'>Loading...</h1>
+    }
+    if(error){
+        content = <h1 className='text-center text-lg font-semibold py-3'>Something went wrong!</h1>
+    }
+    if(!loading && blogs.length === 0){
+        content = <h1 className='text-center text-lg font-semibold py-3'>Nothing Found.</h1>
+    }
+    if (blogs.length) {
+        content = blogs.map((blog) => (
+            <BlogCard key={blog._id} blog={blog} />
+        ))
+    }
     if (firstDate) {
         if (blogs.length || tags.length) {
             content = blogs

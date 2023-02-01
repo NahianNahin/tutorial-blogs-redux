@@ -1,23 +1,28 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import updateBlogData from '../../redux/thunk/updateBlogs';
 
 const EditBlog = () => {
+    const selected = useSelector(state => state.blog.selected)
+    const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
     let day = new Date().getDate();
-        let month = new Date().getMonth() + 1;
-        let year = new Date().getFullYear();
-        let currentDate = `${day}-${month}-${year}`;
+    let month = new Date().getMonth() + 1;
+    let year = new Date().getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
 
     const submit = (data) => {
         const blog = {
-            headline : data.heading,
-            tag : data.tag,
-            question : data.question,
-            answer : data.answer,
+            headline: data.heading,
+            tag: data.tag,
+            question: data.question,
+            answer: data.answer,
             currentDate
         };
 
         console.log(blog);
+        dispatch(updateBlogData(selected._id, blog))
     };
     return (
         <div className='flex justify-center items-center h-full '>
@@ -32,13 +37,13 @@ const EditBlog = () => {
                             <label className='mb-2 font-semibold px-2' htmlFor='heading'>
                                 Headline
                             </label>
-                            <input className='input input-bordered input-success' type='text' id='heading' {...register("heading")} />
+                            <input className='input input-bordered input-success' type='text' id='heading' {...register("heading")} defaultValue={selected?.headline} />
                         </div>
                         <div className='flex flex-col w-full '>
                             <label className='mb-2 font-semibold px-2' htmlFor='tag'>
                                 Related Tags
                             </label>
-                            <select className='input input-bordered input-success' name='tag' id='tag' {...register("tag")}>
+                            <select className='input input-bordered input-success' name='tag' id='tag' {...register("tag")} defaultValue={selected?.tag}>
                                 <option value='HTML & CSS'>HTML & CSS</option>
                                 <option value='JS'>JS</option>
                                 <option value='React'>React</option>
@@ -52,6 +57,7 @@ const EditBlog = () => {
                         </label>
                         <textarea
                             className="textarea textarea-bordered textarea-md w-full  resize-none"
+                            defaultValue={selected?.question}
                             placeholder="Question"
                             id='question'
                             rows="2"
@@ -65,6 +71,7 @@ const EditBlog = () => {
                         </label>
                         <textarea
                             className="textarea textarea-bordered textarea-md w-full  resize-none"
+                            defaultValue={selected?.answer}
                             placeholder="Answer"
                             id='answer'
                             rows="5"

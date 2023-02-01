@@ -1,15 +1,13 @@
 import React from 'react';
 import { GiSelfLove } from 'react-icons/gi';
 import { useDispatch, useSelector } from 'react-redux';
-import { add_to_history, toggle_love } from '../redux/actions/ContentActions';
+import { add_to_history } from '../redux/actions/ContentActions';
 import BlogModal from './BlogModal';
 
 
 const BlogCard = ({ blog }) => {
-    const love = useSelector(state => state.filter.love)
-    const modal = useSelector(state => state.blog.modal)
+    const modal = useSelector(state => state.blog.modal);
     const dispatch = useDispatch();
-    const activeClass = "text-white  bg-orange-500 border-white";
     return (
         <div className='shadow-lg relative rounded-3xl border p-3 flex flex-col text-orange-900'>
             <h1 className='font-bold text-center text-lg text-black'>{blog.headline}</h1>
@@ -28,8 +26,7 @@ const BlogCard = ({ blog }) => {
                 </label>
                 <button
                     title='love'
-                    onClick={() => dispatch(toggle_love(blog))}
-                    className={`border px-2 py-1 rounded-full font-semibold ${love ? activeClass : null}`}
+                    className={`border px-2 py-1 rounded-full font-semibold`}
                 >
                     <GiSelfLove />
                 </button>

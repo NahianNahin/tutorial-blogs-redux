@@ -17,4 +17,4 @@ export const TOGGLE_TAG = "TOGGLE_TAG";
 export const GET_KEYWORD = "GET_KEYWORD";
 
 
-export const TOGGLE_LOVE = "TOGGLE_LOVE";
+export const SELECTED_BLOG = "SELECTED_BLOG";

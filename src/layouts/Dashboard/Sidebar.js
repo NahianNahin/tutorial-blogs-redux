@@ -12,9 +12,6 @@ const Sidebar = () => {
         <li>
           <Link to='add-blog'> Add Blog </Link>
         </li>
-        <li>
-          <Link to='edit-blog'> Edit Blog </Link>
-        </li>
         <li className='mt-auto'>
           <Link to='/' className="font-semibold"> Back to Home </Link>
         </li>
